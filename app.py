@@ -10,5 +10,9 @@ def home():
 def chooseModel():
     return render_template("choose.html")
 
+@app.route("/cnnModel", methods=["POST", "GET"])
+def cnnModel():
+   pass
+
 if __name__ == "__main__":
     app.run(debug=True)
