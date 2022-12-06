@@ -10,7 +10,6 @@ body {
 }
 h1 {
   color: black;
-  margin-left: 350px;
 }
 .container {
   left: 450px;
@@ -24,7 +23,7 @@ h1 {
 .container1 {
   left: 250px;
   top: 200px;
-  align-items: center;
+  text-align: center;
   position: relative;
   width: 1000px;
   height: 300px;
@@ -37,6 +36,14 @@ h1 {
   margin-left: 100px;
   margin-top: 30px;
 }
+.input[type="file"]{
+  display: none;
+}
+.span_f{
+  margin-left: 0.3rem;
+  font-family: sans-serif;
+  font-size: 14px;
+}
 .design {
   width: 300px;
   height: 100px;
@@ -46,10 +53,23 @@ h1 {
   color: black;
   font-size: 34px;
   padding: 5px;
-  margin-left: 150px;
-  margin-top: 30px;
+  margin-left: 25px;
+}
+.design1 {
+  border: 6px solid black;
+  border-radius: 8px;
+  background-color: #9ddcbd;
+  color: black;
+  font-size: 34px;
+  padding: 25px;
 }
 .design:hover {
+  background-color: black;
+  color: #9ddcbd;
+  border: 6px solid #9ddcbd;
+  border-radius: 15px;
+}
+.design1:hover {
   background-color: black;
   color: #9ddcbd;
   border: 6px solid #9ddcbd;
