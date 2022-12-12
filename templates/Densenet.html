@@ -5,19 +5,32 @@
   <title>WhatsThatBird</title>
   <link rel="icon" href="../static/public/logo.png" />
   <link rel="stylesheet" href="../static/styles/index.css">
-  <script src="upload.js" defer></script>
 </head>
 
 <body>
-    <div class="container1">
-        <h1>SELECT IMAGE:</h1>
-        <form action="/" method="post" enctype="multipart/form-data">
-        <label  for="image_upload" class="design1"> Upload Image:  
-        <input id="image_upload" type="file" name="uploadedImage" hidden/>
-        <span id="file-chosen" class="span_f">No file choosen</span></label>
-        <input type="submit" value="Predict image" class="design">
-        </form>
-        
-    </div>
+  <div>
+    <h2>Select a file to upload!</h2>
+    <p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </p>
+    <form action="" method="post" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" class="form-control" autocomplete="off" required>
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+</div>
 </body>
 </html?
