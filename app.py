@@ -52,7 +52,7 @@ ds_train = (
     .prefetch(buffer_size=AUTOTUNE)
 )
 
-def findBird(filename):
+def findBirdDenseNet(filename):
     print("i am here")
     print(filename)
     img = tf.keras.utils.load_img("static/uploads/"+filename, target_size=(200, 200))
@@ -61,6 +61,24 @@ def findBird(filename):
     print(img_array)
     class_names = ds_train_.class_names
     denseNetModel = load_model("models/DenseNet.h5")
+    predictions = denseNetModel.predict(img_array)
+    score = tf.nn.softmax(predictions[0])
+
+    return(
+        "This bird is most likely a {} with a {:.2f} percent confidence."
+        .format(class_names[np.argmax(score)], 100 * np.max(score))
+    )
+
+
+def findBirdCNN(filename):
+    print("i am here")
+    print(filename)
+    img = tf.keras.utils.load_img("static/uploads/"+filename, target_size=(128, 128))
+    img_array = tf.keras.utils.img_to_array(img=img)
+    img_array = tf.expand_dims(img_array, 0)
+    print(img_array)
+    class_names = ds_train_.class_names
+    denseNetModel = load_model("models/birdsCNN.h5")
     predictions = denseNetModel.predict(img_array)
     score = tf.nn.softmax(predictions[0])
 
@@ -114,9 +132,21 @@ def denseNetModel():
         file = form.file.data
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], file.filename))
         print("eyeyeyeyey")
-        text = findBird(file.filename)
+        text = findBirdDenseNet(file.filename)
         return text
     return render_template("Densenet.html", form=form)
+
+
+@app.route("/CNNModel", methods=["POST", "GET"])
+def CNNModel():
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        file = form.file.data
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], file.filename))
+        print("eyeyeyeyey")
+        text = findBirdCNN(file.filename)
+        return text
+    return render_template("CNN.html", form=form)
 
 if __name__ == "__main__":
     app.run(debug=True)
