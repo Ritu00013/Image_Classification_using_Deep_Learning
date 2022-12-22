@@ -27,6 +27,13 @@ h1 {
   border-radius: 20px;
   place-items: center;
   display: grid;
+  text-align: center;
+  color: #1E2532;
+}
+
+p {
+  text-align: center;
+  color: #1E2532;
 }
 
 body {
