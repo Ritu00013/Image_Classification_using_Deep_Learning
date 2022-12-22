@@ -133,7 +133,7 @@ def denseNetModel():
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], file.filename))
         print("eyeyeyeyey")
         text = findBirdDenseNet(file.filename)
-        return text
+        return render_template("prediction.html", pred=text)
     return render_template("Densenet.html", form=form)
 
 
@@ -145,7 +145,7 @@ def CNNModel():
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], file.filename))
         print("eyeyeyeyey")
         text = findBirdCNN(file.filename)
-        return text
+        return render_template("prediction.html", pred=text)
     return render_template("CNN.html", form=form)
 
 if __name__ == "__main__":
